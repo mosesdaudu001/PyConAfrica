@@ -1,0 +1,66 @@
+# Reference stack. This is what the brief specifies and what anyone reproducing
+# the benchmark should use.
+#
+# IMPORTANT: the numbers in RESULTS.md were NOT produced by this file. The
+# measurement host had no Docker daemon available, so native/setup.sh installs
+# the same upstream packages directly. Both paths run the identical app code,
+# identical SQL, identical seed and identical load profile; only the packaging
+# differs. Absolute numbers are hardware-dependent regardless — see the
+# Environment section of RESULTS.md before comparing.
+
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: bench
+      POSTGRES_PASSWORD: bench
+      POSTGRES_DB: bench
+    # NOTE: no command overrides. max_connections stays at the stock 100 --
+    # that ceiling is part of what the benchmark is measuring.
+    ports: ["${PG_PUBLISH:-5432}:5432"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bench -d bench"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+    cpuset: "${APP_CPUSET:-}"
+
+  pgbouncer:
+    image: edoburu/pgbouncer:latest
+    environment:
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_USER: bench
+      DB_PASSWORD: bench
+      DB_NAME: bench
+      POOL_MODE: transaction
+      MAX_CLIENT_CONN: "2000"
+      DEFAULT_POOL_SIZE: "20"
+      AUTH_TYPE: plain
+    depends_on:
+      postgres: {condition: service_healthy}
+    ports: ["${PGB_PUBLISH:-6432}:5432"]
+    cpuset: "${APP_CPUSET:-}"
+
+  redis:
+    image: redis:7
+    ports: ["${REDIS_PUBLISH:-6379}:6379"]
+    cpuset: "${APP_CPUSET:-}"
+
+  app:
+    build: .
+    environment:
+      BENCH_DRIVER: "${BENCH_DRIVER:-sync}"
+      BENCH_TARGET: "${BENCH_TARGET:-pg}"
+      BENCH_CACHE: "${BENCH_CACHE:-off}"
+      PG_HOST: postgres
+      PG_PORT: "5432"
+      PGB_PORT: "5432"
+      REDIS_HOST: redis
+    command: >
+      uvicorn app.main:app --host 0.0.0.0 --port 8000
+      --workers ${BENCH_WORKERS:-1} --http httptools --loop uvloop --log-level warning
+    depends_on:
+      postgres: {condition: service_healthy}
+    ports: ["${APP_PUBLISH:-8000}:8000"]
+    cpuset: "${APP_CPUSET:-}"

@@ -1,0 +1,158 @@
+[12:48:16] flask: gunicorn -k gevent -w 17 (2 x 8 + 1), cache=on, target=pgbouncer
+[12:48:16] --- rep 1/3 ---
+OK
+OK
+[12:48:17] app up pid=380959
+[12:48:17] warm-up 10s (discarded)
+Summary:
+  Success rate:	100.00%
+  Total:	10003.4119 ms
+  Slowest:	182.3802 ms
+  Fastest:	0.4698 ms
+  Average:	24.0197 ms
+  Requests/sec:	4161.5801
+
+  Total data:	83.06 MiB
+  Size/request:	2.05 KiB
+  Size/sec:	8.30 MiB
+
+Response time histogram:
+    0.470 ms [1]     |
+   18.661 ms [15181] |■■■■■■■■■■■■■■■■■■■■■■■■■
+   36.852 ms [19322] |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+   55.043 ms [6434]  |■■■■■■■■■■
+   73.234 ms [436]   |
+   91.425 ms [68]    |
+  109.616 ms [18]    |
+  127.807 ms [13]    |
+  145.998 ms [30]    |
+  164.189 ms [24]    |
+  182.380 ms [3]     |
+
+Response time distribution:
+  10.00% in 3.7328 ms
+  25.00% in 8.9050 ms
+  50.00% in 28.2313 ms
+  75.00% in 34.6511 ms
+  90.00% in 39.5803 ms
+  95.00% in 43.4456 ms
+  99.00% in 59.3341 ms
+  99.90% in 137.2416 ms
+  99.99% in 159.3436 ms
+
+
+Details (average, fastest, slowest):
+  DNS+dialup:	0.4681 ms, 0.1756 ms, 1.0043 ms
+  DNS-lookup:	0.0048 ms, 0.0017 ms, 0.0923 ms
+
+Status code distribution:
+  [200] 41530 responses
+
+Error distribution:
+  [100] aborted due to deadline
+  req/s=8907.2 p50=7.1ms p99=51.2ms codes={'200': 267163}
+[12:49:02] --- rep 2/3 ---
+OK
+OK
+[12:49:02] app up pid=381295
+[12:49:02] warm-up 10s (discarded)
+Summary:
+  Success rate:	100.00%
+  Total:	10003.3916 ms
+  Slowest:	229.4823 ms
+  Fastest:	0.4742 ms
+  Average:	24.6945 ms
+  Requests/sec:	4049.2267
+
+  Total data:	80.80 MiB
+  Size/request:	2.05 KiB
+  Size/sec:	8.08 MiB
+
+Response time histogram:
+    0.474 ms [1]     |
+   23.375 ms [18237] |■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+   46.276 ms [20772] |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+   69.177 ms [1148]  |■
+   92.077 ms [97]    |
+  114.978 ms [54]    |
+  137.879 ms [21]    |
+  160.780 ms [23]    |
+  183.681 ms [21]    |
+  206.581 ms [24]    |
+  229.482 ms [8]     |
+
+Response time distribution:
+  10.00% in 4.1297 ms
+  25.00% in 18.3914 ms
+  50.00% in 24.5729 ms
+  75.00% in 32.8331 ms
+  90.00% in 39.5942 ms
+  95.00% in 44.0545 ms
+  99.00% in 55.3603 ms
+  99.90% in 171.6461 ms
+  99.99% in 211.0592 ms
+
+
+Details (average, fastest, slowest):
+  DNS+dialup:	0.4389 ms, 0.1782 ms, 0.9123 ms
+  DNS-lookup:	0.0046 ms, 0.0018 ms, 0.0477 ms
+
+Status code distribution:
+  [200] 40406 responses
+
+Error distribution:
+  [100] aborted due to deadline
+  req/s=9024.6 p50=7.3ms p99=49.2ms codes={'200': 270674}
+[12:49:47] --- rep 3/3 ---
+OK
+OK
+[12:49:48] app up pid=381621
+[12:49:48] warm-up 10s (discarded)
+Summary:
+  Success rate:	100.00%
+  Total:	10003.4391 ms
+  Slowest:	216.2016 ms
+  Fastest:	0.4967 ms
+  Average:	24.4877 ms
+  Requests/sec:	4083.0958
+
+  Total data:	81.50 MiB
+  Size/request:	2.05 KiB
+  Size/sec:	8.15 MiB
+
+Response time histogram:
+    0.497 ms [1]     |
+   22.067 ms [12856] |■■■■■■■■■■■■■■■
+   43.638 ms [27311] |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+   65.208 ms [468]   |
+   86.779 ms [9]     |
+  108.349 ms [0]     |
+  129.920 ms [5]     |
+  151.490 ms [21]    |
+  173.061 ms [45]    |
+  194.631 ms [26]    |
+  216.202 ms [3]     |
+
+Response time distribution:
+  10.00% in 4.0979 ms
+  25.00% in 20.3330 ms
+  50.00% in 26.3404 ms
+  75.00% in 32.1331 ms
+  90.00% in 36.0410 ms
+  95.00% in 38.4777 ms
+  99.00% in 45.9464 ms
+  99.90% in 164.0892 ms
+  99.99% in 189.0001 ms
+
+
+Details (average, fastest, slowest):
+  DNS+dialup:	0.4683 ms, 0.1883 ms, 0.9639 ms
+  DNS-lookup:	0.0046 ms, 0.0017 ms, 0.0683 ms
+
+Status code distribution:
+  [200] 40745 responses
+
+Error distribution:
+  [100] aborted due to deadline
+  req/s=9249.3 p50=7.0ms p99=47.6ms codes={'200': 277439}
+[12:50:33] done FLASK

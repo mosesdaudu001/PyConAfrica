@@ -1,0 +1,169 @@
+[12:41:33] config=B4 driver=sync target=pg cache=on workers=1
+[12:41:33] load: c=100 warmup=10s measure=30s reps=3 url=http://127.0.0.1:8000/exam/1[0-9]{5}
+[12:41:33] cores: app=0-7 gen=8-11
+[12:41:33] --- rep 1/3 ---
+OK
+[12:41:33] redis flushed (cache starts cold; the 10s warm-up primes it)
+OK
+[12:41:33] app up pid=350953 -> {"ok":true,"driver":"sync","target":"pg","cache":"on"}
+[12:41:33] pre-flight http://127.0.0.1:8000/exam/156567 -> HTTP 200 id=156567
+[12:41:33] warm-up 10s (discarded)
+Summary:
+  Success rate:	100.00%
+  Total:	10.0044 sec
+  Slowest:	2.0640 sec
+  Fastest:	0.0813 sec
+  Average:	0.4358 sec
+  Requests/sec:	234.5973
+
+  Total data:	4.49 MiB
+  Size/request:	2.05 KiB
+  Size/sec:	460.06 KiB
+
+Response time histogram:
+  0.081 sec [1]    |
+  0.280 sec [172]  |■■■
+  0.478 sec [1606] |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  0.676 sec [421]  |■■■■■■■■
+  0.874 sec [7]    |
+  1.073 sec [5]    |
+  1.271 sec [8]    |
+  1.469 sec [7]    |
+  1.667 sec [5]    |
+  1.866 sec [9]    |
+  2.064 sec [6]    |
+
+Response time distribution:
+  10.00% in 0.3059 sec
+  25.00% in 0.3909 sec
+  50.00% in 0.4303 sec
+  75.00% in 0.4704 sec
+  90.00% in 0.5113 sec
+  95.00% in 0.5376 sec
+  99.00% in 1.3956 sec
+  99.90% in 2.0187 sec
+  99.99% in 2.0640 sec
+
+
+Details (average, fastest, slowest):
+  DNS+dialup:	0.0003 sec, 0.0001 sec, 0.0007 sec
+  DNS-lookup:	0.0000 sec, 0.0000 sec, 0.0001 sec
+
+Status code distribution:
+  [200] 2247 responses
+
+Error distribution:
+  [100] aborted due to deadline
+[12:41:43] measure 30s -> /content/python-at-scale-bench/results/raw/B4_rep1.oha.json
+  req/s=239.3 p50=418.7ms p99=575.1ms codes={'200': 7080} errs={'aborted due to deadline': 100} appcpu=73.2% gencpu=0.4% pgconn_max=19 redis={'hits': 426, 'misses': 6752, 'hit_ratio': 0.0593}
+[12:42:17] --- rep 2/3 ---
+OK
+[12:42:17] redis flushed (cache starts cold; the 10s warm-up primes it)
+OK
+[12:42:18] app up pid=360327 -> {"ok":true,"driver":"sync","target":"pg","cache":"on"}
+[12:42:18] pre-flight http://127.0.0.1:8000/exam/132687 -> HTTP 200 id=132687
+[12:42:18] warm-up 10s (discarded)
+Summary:
+  Success rate:	100.00%
+  Total:	10.0031 sec
+  Slowest:	1.7976 sec
+  Fastest:	0.0638 sec
+  Average:	0.4313 sec
+  Requests/sec:	236.7256
+
+  Total data:	4.53 MiB
+  Size/request:	2.05 KiB
+  Size/sec:	464.09 KiB
+
+Response time histogram:
+  0.064 sec [1]    |
+  0.237 sec [132]  |■■■
+  0.411 sec [702]  |■■■■■■■■■■■■■■■■
+  0.584 sec [1383] |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  0.757 sec [4]    |
+  0.931 sec [6]    |
+  1.104 sec [10]   |
+  1.277 sec [6]    |
+  1.451 sec [4]    |
+  1.624 sec [8]    |
+  1.798 sec [12]   |
+
+Response time distribution:
+  10.00% in 0.3125 sec
+  25.00% in 0.3937 sec
+  50.00% in 0.4304 sec
+  75.00% in 0.4645 sec
+  90.00% in 0.5014 sec
+  95.00% in 0.5293 sec
+  99.00% in 1.3183 sec
+  99.90% in 1.7572 sec
+  99.99% in 1.7976 sec
+
+
+Details (average, fastest, slowest):
+  DNS+dialup:	0.0003 sec, 0.0001 sec, 0.0007 sec
+  DNS-lookup:	0.0000 sec, 0.0000 sec, 0.0001 sec
+
+Status code distribution:
+  [200] 2268 responses
+
+Error distribution:
+  [100] aborted due to deadline
+[12:42:28] measure 30s -> /content/python-at-scale-bench/results/raw/B4_rep2.oha.json
+  req/s=237.6 p50=418.8ms p99=595.6ms codes={'200': 7030} errs={'aborted due to deadline': 100} appcpu=72.2% gencpu=0.4% pgconn_max=23 redis={'hits': 422, 'misses': 6714, 'hit_ratio': 0.0591}
+[12:43:02] --- rep 3/3 ---
+OK
+[12:43:02] redis flushed (cache starts cold; the 10s warm-up primes it)
+OK
+[12:43:02] app up pid=369690 -> {"ok":true,"driver":"sync","target":"pg","cache":"on"}
+[12:43:02] pre-flight http://127.0.0.1:8000/exam/164541 -> HTTP 200 id=164541
+[12:43:02] warm-up 10s (discarded)
+Summary:
+  Success rate:	100.00%
+  Total:	10.0028 sec
+  Slowest:	1.9851 sec
+  Fastest:	0.0602 sec
+  Average:	0.4058 sec
+  Requests/sec:	251.0302
+
+  Total data:	4.82 MiB
+  Size/request:	2.05 KiB
+  Size/sec:	493.63 KiB
+
+Response time histogram:
+  0.060 sec [1]    |
+  0.253 sec [133]  |■■
+  0.445 sec [1910] |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  0.638 sec [318]  |■■■■■
+  0.830 sec [6]    |
+  1.023 sec [9]    |
+  1.215 sec [5]    |
+  1.408 sec [7]    |
+  1.600 sec [7]    |
+  1.793 sec [8]    |
+  1.985 sec [7]    |
+
+Response time distribution:
+  10.00% in 0.3029 sec
+  25.00% in 0.3671 sec
+  50.00% in 0.4007 sec
+  75.00% in 0.4302 sec
+  90.00% in 0.4611 sec
+  95.00% in 0.4843 sec
+  99.00% in 1.2956 sec
+  99.90% in 1.9057 sec
+  99.99% in 1.9851 sec
+
+
+Details (average, fastest, slowest):
+  DNS+dialup:	0.0003 sec, 0.0001 sec, 0.0009 sec
+  DNS-lookup:	0.0000 sec, 0.0000 sec, 0.0001 sec
+
+Status code distribution:
+  [200] 2411 responses
+
+Error distribution:
+  [100] aborted due to deadline
+[12:43:12] measure 30s -> /content/python-at-scale-bench/results/raw/B4_rep3.oha.json
+  req/s=243.3 p50=404.6ms p99=585.7ms codes={'200': 7199} errs={'aborted due to deadline': 100} appcpu=71.1% gencpu=0.3% pgconn_max=21 redis={'hits': 453, 'misses': 6854, 'hit_ratio': 0.062}
+[12:43:46] done B4

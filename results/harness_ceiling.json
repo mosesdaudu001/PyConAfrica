@@ -1,0 +1,8 @@
+{
+  "what": "GET /healthz — no database, no cache, no I/O. Same app cores (0-7), same generator cores (8-11), same concurrency (100), same keep-alive as every measured config.",
+  "purpose": "Upper bound the harness itself can deliver, so any measured config can be checked against it (ground rule 7).",
+  "workers": 8,
+  "requests_per_sec": 20523.4,
+  "success_rate_pct": 100.0,
+  "duration_s": 8
+}

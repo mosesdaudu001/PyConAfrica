@@ -1,0 +1,32 @@
+host: Google Colab runtime (container), A100 80GB GPU present but unused by this benchmark
+virt: docker
+kernel: 6.6.122+
+kernel cmdline (note mitigations): mitigations=off retbleed=off 
+distro: Ubuntu 22.04.5 LTS
+cpu model: Intel(R) Xeon(R) CPU @ 2.20GHz
+vcpus total: 12  (physical cores: 6, threads/core: 2)
+app tier pinned to cores: 0-7 (8 vCPU)   load generator pinned to: 8-11 (4 vCPU)
+ram: 167 GiB
+postgres: postgres (PostgreSQL) 17.11 (Ubuntu 17.11-1.pgdg22.04+2)
+pgbouncer: PgBouncer 1.25.2
+redis: Redis server v=7.4.11
+oha: oha 1.11.0
+app python: Python 3.13.15
+kernel tuning applied: NONE. No sysctl changes, no ulimit -n changes, no keep-alive toggles. Defaults for every run.
+ulimit -n (all runs): 1048576
+gil-experiment pythons: 3.14.7 (stock) and 3.14.7 free-threaded
+uv: uv 0.12.5 (x86_64-unknown-linux-gnu)
+--- python packages (app tier) ---
+  fastapi==0.118.0
+  uvicorn==0.37.0
+  starlette==0.48.0
+  asyncpg==0.30.0
+  psycopg==3.2.10
+  psycopg2-binary==2.9.10
+  redis==6.4.0
+  flask==3.1.2
+  gunicorn==23.0.0
+  gevent==25.9.1
+  psycogreen==1.0.2
+  httptools==0.8.0
+  uvloop==0.22.1

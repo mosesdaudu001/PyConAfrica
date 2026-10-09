@@ -1,0 +1,571 @@
+=== sweep started 2026-08-26T12:15:03Z ===
+concurrency=100 warmup=3s measure=5s reps=1
+app_cores=0-7 gen_cores=8-11
+
+########## C0 ##########
+[12:15:03] config=C0 driver=sync target=pg cache=off workers=1
+[12:15:03] load: c=100 warmup=3s measure=5s reps=1 url=http://127.0.0.1:8000/exam/1[0-9]{5}}
+[12:15:03] cores: app=0-7 gen=8-11
+[12:15:03] --- rep 1/1 ---
+[12:15:04] app up pid=245742 -> {"ok":true,"driver":"sync","target":"pg","cache":"off"}
+[12:15:04] warm-up 3s (discarded)
+[12:15:07] measure 5s -> /content/python-at-scale-bench/results/raw/C0_rep1.oha.json
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+  File "/root/.local/share/uv/python/cpython-3.13.15-linux-x86_64-gnu/lib/python3.13/json/__init__.py", line 298, in load
+    return loads(fp.read(),
+        cls=cls, object_hook=object_hook,
+        parse_float=parse_float, parse_int=parse_int,
+        parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/root/.local/share/uv/python/cpython-3.13.15-linux-x86_64-gnu/lib/python3.13/json/__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/root/.local/share/uv/python/cpython-3.13.15-linux-x86_64-gnu/lib/python3.13/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/share/uv/python/cpython-3.13.15-linux-x86_64-gnu/lib/python3.13/json/decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+[12:15:16] done C0
+
+########## C4 ##########
+[12:15:17] config=C4 driver=async target=pgbouncer cache=on workers=8
+[12:15:17] load: c=100 warmup=3s measure=5s reps=1 url=http://127.0.0.1:8000/exam/1[0-9]{5}}
+[12:15:17] cores: app=0-7 gen=8-11
+[12:15:17] --- rep 1/1 ---
+[12:15:17] redis flushed (cache starts cold; the 10s warm-up primes it)
+[12:15:18] app up pid=245885 -> {"ok":true,"driver":"async","target":"pgbouncer","cache":"on"}
+[12:15:18] warm-up 3s (discarded)
+[12:15:21] measure 5s -> /content/python-at-scale-bench/results/raw/C4_rep1.oha.json
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+  File "/root/.local/share/uv/python/cpython-3.13.15-linux-x86_64-gnu/lib/python3.13/json/__init__.py", line 298, in load
+    return loads(fp.read(),
+        cls=cls, object_hook=object_hook,
+        parse_float=parse_float, parse_int=parse_int,
+        parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/root/.local/share/uv/python/cpython-3.13.15-linux-x86_64-gnu/lib/python3.13/json/__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/root/.local/share/uv/python/cpython-3.13.15-linux-x86_64-gnu/lib/python3.13/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/share/uv/python/cpython-3.13.15-linux-x86_64-gnu/lib/python3.13/json/decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+[12:15:30] done C4
+=== sweep finished 2026-08-26T12:15:31Z ===
+WARN unreadable /content/python-at-scale-bench/results/raw/C0_rep1.oha.json: Expecting value: line 1 column 1 (char 0)
+WARN unreadable /content/python-at-scale-bench/results/raw/C4_rep1.oha.json: Expecting value: line 1 column 1 (char 0)
+no raw results found in /content/python-at-scale-bench/results/raw
+=== sweep started 2026-08-26T12:16:31Z ===
+concurrency=100 warmup=3s measure=5s reps=1
+app_cores=0-7 gen_cores=8-11
+
+########## C0 ##########
+[12:16:31] config=C0 driver=sync target=pg cache=off workers=1
+[12:16:31] load: c=100 warmup=3s measure=5s reps=1 url=http://127.0.0.1:8000/exam/1[0-9]{5}
+[12:16:31] cores: app=0-7 gen=8-11
+[12:16:31] --- rep 1/1 ---
+[12:16:31] app up pid=246380 -> {"ok":true,"driver":"sync","target":"pg","cache":"off"}
+[12:16:31] pre-flight http://127.0.0.1:8000/exam/104389 -> HTTP 200 id=104389
+[12:16:31] warm-up 3s (discarded)
+[12:16:34] measure 5s -> /content/python-at-scale-bench/results/raw/C0_rep1.oha.json
+  req/s=220.8 p50=433.4ms p99=2133.0ms codes={'200': 1005} errs={'aborted due to deadline': 100} appcpu=75.2% gencpu=-0.0% pgconn_max=27 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:16:43] done C0
+
+########## C4 ##########
+[12:16:44] config=C4 driver=async target=pgbouncer cache=on workers=8
+[12:16:44] load: c=100 warmup=3s measure=5s reps=1 url=http://127.0.0.1:8000/exam/1[0-9]{5}
+[12:16:44] cores: app=0-7 gen=8-11
+[12:16:44] --- rep 1/1 ---
+[12:16:44] redis flushed (cache starts cold; the 10s warm-up primes it)
+[12:16:45] app up pid=248467 -> {"ok":true,"driver":"async","target":"pgbouncer","cache":"on"}
+[12:16:45] pre-flight http://127.0.0.1:8000/exam/174854 -> HTTP 200 id=174854
+[12:16:45] warm-up 3s (discarded)
+[12:16:48] measure 5s -> /content/python-at-scale-bench/results/raw/C4_rep1.oha.json
+  req/s=8109.9 p50=12.6ms p99=32.6ms codes={'200': 40480} errs={'aborted due to deadline': 99} appcpu=88.5% gencpu=-0.6% pgconn_max=21 redis={'hits': 12543, 'misses': 25870, 'hit_ratio': 0.3265}
+[12:16:57] done C4
+=== sweep finished 2026-08-26T12:16:58Z ===
+### All configurations (median of 1 reps)
+
+| config | req/s | spread | p50 ms | p95 ms | p99 ms | p99.9 ms | max ms | non-2xx+err | app CPU% | gen CPU% | peak pg conns | cache hit |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| C0 | 220.8 | NOT MEASURED | 433.4 | 893.1 | 2,133.0 | 2,453.8 | 2,453.9 | 100 (9.05%) | 75.2 | -0.0 | 27 | n/a |
+| C4 | 8,109.9 | NOT MEASURED | 12.6 | 26.1 | 32.6 | 44.6 | 65.5 | 99 (0.24%) | 88.5 | -0.6 | 21 | 32.6% |
+
+### Set B — one change at a time, vs C0
+
+| change | config | req/s | multiplier vs C0 | p99 ms | non-2xx+err |
+|---|---|---|---|---|---|
+
+### Status-code / error breakdown (summed over reps)
+
+| config | codes | errors |
+|---|---|---|
+| C0 | `{"200": 1005}` | `{"aborted due to deadline": 100}` |
+| C4 | `{"200": 40480}` | `{"aborted due to deadline": 99}` |
+=== sweep started 2026-08-26T12:18:23Z ===
+concurrency=50 warmup=5s measure=8s reps=1
+app_cores=0-7 gen_cores=8-11
+
+########## C0 ##########
+[12:18:23] config=C0 driver=sync target=pg cache=off workers=1
+[12:18:23] load: c=50 warmup=5s measure=8s reps=1 url=http://127.0.0.1:8000/exam/1[0-9]{5}
+[12:18:23] cores: app=0-7 gen=8-11
+[12:18:23] --- rep 1/1 ---
+[12:18:23] app up pid=249056 -> {"ok":true,"driver":"sync","target":"pg","cache":"off"}
+[12:18:23] pre-flight http://127.0.0.1:8000/exam/102080 -> HTTP 200 id=102080
+[12:18:23] warm-up 5s (discarded)
+[12:18:28] measure 8s -> /content/python-at-scale-bench/results/raw/C0_rep1.oha.json
+  req/s=228.0 p50=218.4ms p99=372.9ms codes={'200': 1775} errs={'aborted due to deadline': 50} appcpu=70.0% gencpu=0.0% pgconn_max=38 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:18:40] done C0
+
+########## C4 ##########
+[12:18:41] config=C4 driver=async target=pgbouncer cache=on workers=8
+[12:18:41] load: c=50 warmup=5s measure=8s reps=1 url=http://127.0.0.1:8000/exam/1[0-9]{5}
+[12:18:41] cores: app=0-7 gen=8-11
+[12:18:41] --- rep 1/1 ---
+[12:18:41] redis flushed (cache starts cold; the 10s warm-up primes it)
+[12:18:42] app up pid=252362 -> {"ok":true,"driver":"async","target":"pgbouncer","cache":"on"}
+[12:18:42] pre-flight http://127.0.0.1:8000/exam/138307 -> HTTP 200 id=138307
+[12:18:42] warm-up 5s (discarded)
+[12:18:47] measure 8s -> /content/python-at-scale-bench/results/raw/C4_rep1.oha.json
+  req/s=9288.4 p50=4.6ms p99=13.4ms codes={'200': 74277} errs={'aborted due to deadline': 50} appcpu=89.9% gencpu=0.0% pgconn_max=21 redis={'hits': 36448, 'misses': 35608, 'hit_ratio': 0.5058}
+[12:18:59] done C4
+=== sweep finished 2026-08-26T12:19:00Z ===
+### All configurations (median of 1 reps)
+
+| config | req/s | spread | p50 ms | p95 ms | p99 ms | p99.9 ms | max ms | failures | app CPU% | gen CPU% | keep-alive conns | peak pg conns | cache hit |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| C0 | 228.0 | NOT MEASURED | 218.4 | 296.2 | 372.9 | 595.8 | 595.9 | 0 (0.00%) | 70.0 | 0.0 | 47 | 38 | n/a |
+| C4 | 9,288.4 | NOT MEASURED | 4.6 | 11.4 | 13.4 | 16.0 | 26.1 | 0 (0.00%) | 89.9 | 0.0 | 47 | 21 | 50.6% |
+
+### Set B — one change at a time, vs C0
+
+| change | config | req/s | multiplier vs C0 | p99 ms | non-2xx+err |
+|---|---|---|---|---|---|
+
+### Status-code / error breakdown (summed over reps)
+
+`deadline aborts` = requests still in flight when the 30s window closed. One per connection per rep; a stopwatch artefact, not a server failure. Excluded from the failure column above.
+
+| config | codes | real errors | deadline aborts |
+|---|---|---|---|
+| C0 | `{"200": 1775}` | `{}` | 50 |
+| C4 | `{"200": 74277}` | `{}` | 50 |
+=== sweep started 2026-08-26T12:19:00Z ===
+concurrency=100 warmup=5s measure=8s reps=1
+app_cores=0-7 gen_cores=8-11
+
+########## C0 ##########
+[12:19:00] config=C0 driver=sync target=pg cache=off workers=1
+[12:19:00] load: c=100 warmup=5s measure=8s reps=1 url=http://127.0.0.1:8000/exam/1[0-9]{5}
+[12:19:00] cores: app=0-7 gen=8-11
+[12:19:00] --- rep 1/1 ---
+[12:19:01] app up pid=252591 -> {"ok":true,"driver":"sync","target":"pg","cache":"off"}
+[12:19:01] pre-flight http://127.0.0.1:8000/exam/186039 -> HTTP 200 id=186039
+[12:19:01] warm-up 5s (discarded)
+[12:19:06] measure 8s -> /content/python-at-scale-bench/results/raw/C0_rep1.oha.json
+  req/s=222.7 p50=428.4ms p99=1976.8ms codes={'200': 1682} errs={'aborted due to deadline': 100} appcpu=72.7% gencpu=0.0% pgconn_max=42 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:19:18] done C0
+
+########## C4 ##########
+[12:19:19] config=C4 driver=async target=pgbouncer cache=on workers=8
+[12:19:19] load: c=100 warmup=5s measure=8s reps=1 url=http://127.0.0.1:8000/exam/1[0-9]{5}
+[12:19:19] cores: app=0-7 gen=8-11
+[12:19:19] --- rep 1/1 ---
+[12:19:19] redis flushed (cache starts cold; the 10s warm-up primes it)
+[12:19:20] app up pid=255831 -> {"ok":true,"driver":"async","target":"pgbouncer","cache":"on"}
+[12:19:20] pre-flight http://127.0.0.1:8000/exam/171770 -> HTTP 200 id=171770
+[12:19:20] warm-up 5s (discarded)
+[12:19:25] measure 8s -> /content/python-at-scale-bench/results/raw/C4_rep1.oha.json
+  req/s=8972.5 p50=11.9ms p99=28.7ms codes={'200': 71724} errs={'aborted due to deadline': 99} appcpu=90.6% gencpu=0.0% pgconn_max=21 redis={'hits': 34260, 'misses': 35155, 'hit_ratio': 0.4936}
+[12:19:37] done C4
+=== sweep finished 2026-08-26T12:19:38Z ===
+### All configurations (median of 1 reps)
+
+| config | req/s | spread | p50 ms | p95 ms | p99 ms | p99.9 ms | max ms | failures | app CPU% | gen CPU% | keep-alive conns | peak pg conns | cache hit |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| C0 | 222.7 | NOT MEASURED | 428.4 | 574.8 | 1,976.8 | 2,439.8 | 2,519.5 | 0 (0.00%) | 72.7 | 0.0 | 94 | 42 | n/a |
+| C4 | 8,972.5 | NOT MEASURED | 11.9 | 24.5 | 28.7 | 33.8 | 41.8 | 0 (0.00%) | 90.6 | 0.0 | 93 | 21 | 49.4% |
+
+### Set B — one change at a time, vs C0
+
+| change | config | req/s | multiplier vs C0 | p99 ms | non-2xx+err |
+|---|---|---|---|---|---|
+
+### Status-code / error breakdown (summed over reps)
+
+`deadline aborts` = requests still in flight when the 30s window closed. One per connection per rep; a stopwatch artefact, not a server failure. Excluded from the failure column above.
+
+| config | codes | real errors | deadline aborts |
+|---|---|---|---|
+| C0 | `{"200": 1682}` | `{}` | 100 |
+| C4 | `{"200": 71724}` | `{}` | 99 |
+=== sweep started 2026-08-26T12:19:38Z ===
+concurrency=200 warmup=5s measure=8s reps=1
+app_cores=0-7 gen_cores=8-11
+
+########## C0 ##########
+[12:19:38] config=C0 driver=sync target=pg cache=off workers=1
+[12:19:38] load: c=200 warmup=5s measure=8s reps=1 url=http://127.0.0.1:8000/exam/1[0-9]{5}
+[12:19:38] cores: app=0-7 gen=8-11
+[12:19:38] --- rep 1/1 ---
+[12:19:39] app up pid=256063 -> {"ok":true,"driver":"sync","target":"pg","cache":"off"}
+[12:19:39] pre-flight http://127.0.0.1:8000/exam/117145 -> HTTP 200 id=117145
+[12:19:39] warm-up 5s (discarded)
+[12:19:44] measure 8s -> /content/python-at-scale-bench/results/raw/C0_rep1.oha.json
+  req/s=217.5 p50=825.6ms p99=5307.6ms codes={'200': 1541} errs={'aborted due to deadline': 200} appcpu=74.8% gencpu=0.0% pgconn_max=41 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:19:56] done C0
+
+########## C4 ##########
+[12:19:57] config=C4 driver=async target=pgbouncer cache=on workers=8
+[12:19:57] load: c=200 warmup=5s measure=8s reps=1 url=http://127.0.0.1:8000/exam/1[0-9]{5}
+[12:19:57] cores: app=0-7 gen=8-11
+[12:19:57] --- rep 1/1 ---
+[12:19:57] redis flushed (cache starts cold; the 10s warm-up primes it)
+[12:19:58] app up pid=259394 -> {"ok":true,"driver":"async","target":"pgbouncer","cache":"on"}
+[12:19:58] pre-flight http://127.0.0.1:8000/exam/184410 -> HTTP 200 id=184410
+[12:19:58] warm-up 5s (discarded)
+[12:20:03] measure 8s -> /content/python-at-scale-bench/results/raw/C4_rep1.oha.json
+  req/s=9190.9 p50=8.2ms p99=76.4ms codes={'200': 73379} errs={'aborted due to deadline': 200} appcpu=91.3% gencpu=0.0% pgconn_max=21 redis={'hits': 36528, 'misses': 34631, 'hit_ratio': 0.5133}
+[12:20:15] done C4
+=== sweep finished 2026-08-26T12:20:16Z ===
+### All configurations (median of 1 reps)
+
+| config | req/s | spread | p50 ms | p95 ms | p99 ms | p99.9 ms | max ms | failures | app CPU% | gen CPU% | keep-alive conns | peak pg conns | cache hit |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| C0 | 217.5 | NOT MEASURED | 825.6 | 3,255.6 | 5,307.6 | 5,798.8 | 5,872.8 | 0 (0.00%) | 74.8 | 0.0 | 186 | 41 | n/a |
+| C4 | 9,190.9 | NOT MEASURED | 8.2 | 60.8 | 76.4 | 114.4 | 179.6 | 0 (0.00%) | 91.3 | 0.0 | 186 | 21 | 51.3% |
+
+### Set B — one change at a time, vs C0
+
+| change | config | req/s | multiplier vs C0 | p99 ms | non-2xx+err |
+|---|---|---|---|---|---|
+
+### Status-code / error breakdown (summed over reps)
+
+`deadline aborts` = requests still in flight when the 30s window closed. One per connection per rep; a stopwatch artefact, not a server failure. Excluded from the failure column above.
+
+| config | codes | real errors | deadline aborts |
+|---|---|---|---|
+| C0 | `{"200": 1541}` | `{}` | 200 |
+| C4 | `{"200": 73379}` | `{}` | 200 |
+=== sweep started 2026-08-26T12:21:24Z ===
+concurrency=100 warmup=5s measure=8s reps=1
+app_cores=0-7 gen_cores=8-11
+
+########## C4 ##########
+[12:21:24] config=C4 driver=async target=pgbouncer cache=on workers=8
+[12:21:24] load: c=100 warmup=5s measure=8s reps=1 url=http://127.0.0.1:8000/exam/1[0-9]{5}
+[12:21:24] cores: app=0-7 gen=8-11
+[12:21:25] --- rep 1/1 ---
+[12:21:25] redis flushed (cache starts cold; the 10s warm-up primes it)
+[12:21:26] app up pid=259934 -> {"ok":true,"driver":"async","target":"pgbouncer","cache":"on"}
+[12:21:26] pre-flight http://127.0.0.1:8000/exam/137942 -> HTTP 200 id=137942
+[12:21:26] warm-up 5s (discarded)
+[12:21:31] measure 8s -> /content/python-at-scale-bench/results/raw/C4_rep1.oha.json
+  req/s=9433.2 p50=10.6ms p99=27.9ms codes={'200': 75413} errs={'aborted due to deadline': 100} appcpu=90.8% gencpu=9.8% pgconn_max=21 redis={'hits': 36195, 'misses': 37117, 'hit_ratio': 0.4937}
+[12:21:43] done C4
+=== sweep finished 2026-08-26T12:21:44Z ===
+### All configurations (median of 1 reps)
+
+| config | req/s | spread | p50 ms | p95 ms | p99 ms | p99.9 ms | max ms | failures | app CPU% | gen CPU% | keep-alive conns | peak pg conns | cache hit |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| C4 | 9,433.2 | NOT MEASURED | 10.6 | 23.6 | 27.9 | 33.2 | 42.0 | 0 (0.00%) | 90.8 | 9.8 | 93 | 21 | 49.4% |
+
+### Set B — one change at a time, vs C0
+
+| change | config | req/s | multiplier vs C0 | p99 ms | non-2xx+err |
+|---|---|---|---|---|---|
+
+### Status-code / error breakdown (summed over reps)
+
+`deadline aborts` = requests still in flight when the 30s window closed. One per connection per rep; a stopwatch artefact, not a server failure. Excluded from the failure column above.
+
+| config | codes | real errors | deadline aborts |
+|---|---|---|---|
+| C4 | `{"200": 75413}` | `{}` | 100 |
+=== sweep started 2026-08-26T12:23:25Z ===
+concurrency=100 warmup=10s measure=30s reps=3
+app_cores=0-7 gen_cores=8-11
+
+########## C0 ##########
+[12:23:25] config=C0 driver=sync target=pg cache=off workers=1
+[12:23:25] load: c=100 warmup=10s measure=30s reps=3 url=http://127.0.0.1:8000/exam/1[0-9]{5}
+[12:23:25] cores: app=0-7 gen=8-11
+[12:23:25] --- rep 1/3 ---
+[12:23:26] app up pid=260795 -> {"ok":true,"driver":"sync","target":"pg","cache":"off"}
+[12:23:26] pre-flight http://127.0.0.1:8000/exam/125303 -> HTTP 200 id=125303
+[12:23:26] warm-up 10s (discarded)
+[12:23:36] measure 30s -> /content/python-at-scale-bench/results/raw/C0_rep1.oha.json
+  req/s=233.2 p50=426.7ms p99=588.4ms codes={'200': 6898} errs={'aborted due to deadline': 100} appcpu=71.2% gencpu=0.3% pgconn_max=40 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:24:10] --- rep 2/3 ---
+[12:24:10] app up pid=270508 -> {"ok":true,"driver":"sync","target":"pg","cache":"off"}
+[12:24:10] pre-flight http://127.0.0.1:8000/exam/166432 -> HTTP 200 id=166432
+[12:24:10] warm-up 10s (discarded)
+[12:24:20] measure 30s -> /content/python-at-scale-bench/results/raw/C0_rep2.oha.json
+  req/s=229.7 p50=433.2ms p99=605.8ms codes={'200': 6792} errs={'aborted due to deadline': 100} appcpu=73.3% gencpu=0.3% pgconn_max=43 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:24:54] --- rep 3/3 ---
+[12:24:55] app up pid=280068 -> {"ok":true,"driver":"sync","target":"pg","cache":"off"}
+[12:24:55] pre-flight http://127.0.0.1:8000/exam/162700 -> HTTP 200 id=162700
+[12:24:55] warm-up 10s (discarded)
+[12:25:05] measure 30s -> /content/python-at-scale-bench/results/raw/C0_rep3.oha.json
+  req/s=232.8 p50=424.4ms p99=625.7ms codes={'200': 6886} errs={'aborted due to deadline': 100} appcpu=72.4% gencpu=0.3% pgconn_max=42 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:25:39] done C0
+
+########## C1 ##########
+[12:25:40] config=C1 driver=async target=pg cache=off workers=1
+[12:25:40] load: c=100 warmup=10s measure=30s reps=3 url=http://127.0.0.1:8000/exam/1[0-9]{5}
+[12:25:40] cores: app=0-7 gen=8-11
+[12:25:40] --- rep 1/3 ---
+[12:25:41] app up pid=289825 -> {"ok":true,"driver":"async","target":"pg","cache":"off"}
+[12:25:41] pre-flight http://127.0.0.1:8000/exam/168514 -> HTTP 200 id=168514
+[12:25:41] warm-up 10s (discarded)
+[12:25:51] measure 30s -> /content/python-at-scale-bench/results/raw/C1_rep1.oha.json
+  req/s=1737.4 p50=57.6ms p99=155.9ms codes={'200': 52030} errs={'aborted due to deadline': 100} appcpu=32.2% gencpu=2.1% pgconn_max=31 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:26:24] --- rep 2/3 ---
+[12:26:25] app up pid=290099 -> {"ok":true,"driver":"async","target":"pg","cache":"off"}
+[12:26:25] pre-flight http://127.0.0.1:8000/exam/163766 -> HTTP 200 id=163766
+[12:26:25] warm-up 10s (discarded)
+[12:26:35] measure 30s -> /content/python-at-scale-bench/results/raw/C1_rep2.oha.json
+  req/s=1740.2 p50=57.4ms p99=157.2ms codes={'200': 52112} errs={'aborted due to deadline': 100} appcpu=27.4% gencpu=2.1% pgconn_max=31 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:27:09] --- rep 3/3 ---
+[12:27:10] app up pid=290381 -> {"ok":true,"driver":"async","target":"pg","cache":"off"}
+[12:27:10] pre-flight http://127.0.0.1:8000/exam/138150 -> HTTP 200 id=138150
+[12:27:10] warm-up 10s (discarded)
+[12:27:20] measure 30s -> /content/python-at-scale-bench/results/raw/C1_rep3.oha.json
+  req/s=1718.6 p50=57.7ms p99=167.1ms codes={'200': 51462} errs={'aborted due to deadline': 100} appcpu=29.4% gencpu=2.3% pgconn_max=31 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:27:54] done C1
+
+########## C2 ##########
+[12:27:55] config=C2 driver=async target=pgbouncer cache=off workers=1
+[12:27:55] load: c=100 warmup=10s measure=30s reps=3 url=http://127.0.0.1:8000/exam/1[0-9]{5}
+[12:27:55] cores: app=0-7 gen=8-11
+[12:27:55] --- rep 1/3 ---
+[12:27:55] app up pid=290687 -> {"ok":true,"driver":"async","target":"pgbouncer","cache":"off"}
+[12:27:55] pre-flight http://127.0.0.1:8000/exam/153531 -> HTTP 200 id=153531
+[12:27:55] warm-up 10s (discarded)
+[12:28:05] measure 30s -> /content/python-at-scale-bench/results/raw/C2_rep1.oha.json
+  req/s=1811.7 p50=54.4ms p99=64.8ms codes={'200': 54258} errs={'aborted due to deadline': 100} appcpu=35.7% gencpu=2.1% pgconn_max=21 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:28:39] --- rep 2/3 ---
+[12:28:39] app up pid=290952 -> {"ok":true,"driver":"async","target":"pgbouncer","cache":"off"}
+[12:28:39] pre-flight http://127.0.0.1:8000/exam/125094 -> HTTP 200 id=125094
+[12:28:39] warm-up 10s (discarded)
+[12:28:50] measure 30s -> /content/python-at-scale-bench/results/raw/C2_rep2.oha.json
+  req/s=1790.3 p50=55.7ms p99=65.5ms codes={'200': 53615} errs={'aborted due to deadline': 100} appcpu=29.9% gencpu=2.0% pgconn_max=21 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:29:23] --- rep 3/3 ---
+[12:29:24] app up pid=291214 -> {"ok":true,"driver":"async","target":"pgbouncer","cache":"off"}
+[12:29:24] pre-flight http://127.0.0.1:8000/exam/184249 -> HTTP 200 id=184249
+[12:29:24] warm-up 10s (discarded)
+[12:29:34] measure 30s -> /content/python-at-scale-bench/results/raw/C2_rep3.oha.json
+  req/s=1850.3 p50=53.1ms p99=95.9ms codes={'200': 55416} errs={'aborted due to deadline': 100} appcpu=33.6% gencpu=2.1% pgconn_max=21 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:30:07] done C2
+
+########## C3 ##########
+[12:30:08] config=C3 driver=async target=pgbouncer cache=off workers=8
+[12:30:08] load: c=100 warmup=10s measure=30s reps=3 url=http://127.0.0.1:8000/exam/1[0-9]{5}
+[12:30:08] cores: app=0-7 gen=8-11
+[12:30:08] --- rep 1/3 ---
+[12:30:10] app up pid=291511 -> {"ok":true,"driver":"async","target":"pgbouncer","cache":"off"}
+[12:30:10] pre-flight http://127.0.0.1:8000/exam/126130 -> HTTP 200 id=126130
+[12:30:10] warm-up 10s (discarded)
+[12:30:20] measure 30s -> /content/python-at-scale-bench/results/raw/C3_rep1.oha.json
+  req/s=5981.9 p50=16.2ms p99=26.5ms codes={'200': 179382} errs={'aborted due to deadline': 100} appcpu=87.5% gencpu=7.7% pgconn_max=21 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:30:54] --- rep 2/3 ---
+[12:30:55] app up pid=291802 -> {"ok":true,"driver":"async","target":"pgbouncer","cache":"off"}
+[12:30:55] pre-flight http://127.0.0.1:8000/exam/129316 -> HTTP 200 id=129316
+[12:30:55] warm-up 10s (discarded)
+[12:31:05] measure 30s -> /content/python-at-scale-bench/results/raw/C3_rep2.oha.json
+  req/s=6197.8 p50=14.1ms p99=33.0ms codes={'200': 185858} errs={'aborted due to deadline': 100} appcpu=88.7% gencpu=7.8% pgconn_max=21 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:31:39] --- rep 3/3 ---
+[12:31:40] app up pid=292090 -> {"ok":true,"driver":"async","target":"pgbouncer","cache":"off"}
+[12:31:40] pre-flight http://127.0.0.1:8000/exam/113565 -> HTTP 200 id=113565
+[12:31:40] warm-up 10s (discarded)
+[12:31:50] measure 30s -> /content/python-at-scale-bench/results/raw/C3_rep3.oha.json
+  req/s=5771.9 p50=16.4ms p99=31.8ms codes={'200': 173081} errs={'aborted due to deadline': 100} appcpu=88.1% gencpu=7.3% pgconn_max=21 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:32:24] done C3
+
+########## C4 ##########
+[12:32:25] config=C4 driver=async target=pgbouncer cache=on workers=8
+[12:32:25] load: c=100 warmup=10s measure=30s reps=3 url=http://127.0.0.1:8000/exam/1[0-9]{5}
+[12:32:25] cores: app=0-7 gen=8-11
+[12:32:25] --- rep 1/3 ---
+[12:32:25] redis flushed (cache starts cold; the 10s warm-up primes it)
+[12:32:26] app up pid=292509 -> {"ok":true,"driver":"async","target":"pgbouncer","cache":"on"}
+[12:32:26] pre-flight http://127.0.0.1:8000/exam/175908 -> HTTP 200 id=175908
+[12:32:26] warm-up 10s (discarded)
+[12:32:36] measure 30s -> /content/python-at-scale-bench/results/raw/C4_rep1.oha.json
+  req/s=19271.6 p50=4.0ms p99=22.9ms codes={'200': 578122} errs={'aborted due to deadline': 100} appcpu=96.0% gencpu=16.2% pgconn_max=21 redis={'hits': 528667, 'misses': 46496, 'hit_ratio': 0.9192}
+[12:33:11] --- rep 2/3 ---
+[12:33:11] redis flushed (cache starts cold; the 10s warm-up primes it)
+[12:33:12] app up pid=292812 -> {"ok":true,"driver":"async","target":"pgbouncer","cache":"on"}
+[12:33:12] pre-flight http://127.0.0.1:8000/exam/158458 -> HTTP 200 id=158458
+[12:33:12] warm-up 10s (discarded)
+[12:33:22] measure 30s -> /content/python-at-scale-bench/results/raw/C4_rep2.oha.json
+  req/s=18195.9 p50=4.5ms p99=22.9ms codes={'200': 545854} errs={'aborted due to deadline': 99} appcpu=96.3% gencpu=16.3% pgconn_max=21 redis={'hits': 495554, 'misses': 47177, 'hit_ratio': 0.9131}
+[12:33:56] --- rep 3/3 ---
+[12:33:56] redis flushed (cache starts cold; the 10s warm-up primes it)
+[12:33:57] app up pid=293106 -> {"ok":true,"driver":"async","target":"pgbouncer","cache":"on"}
+[12:33:57] pre-flight http://127.0.0.1:8000/exam/136128 -> HTTP 200 id=136128
+[12:33:57] warm-up 10s (discarded)
+[12:34:07] measure 30s -> /content/python-at-scale-bench/results/raw/C4_rep3.oha.json
+  req/s=18764.0 p50=4.3ms p99=23.0ms codes={'200': 562899} errs={'aborted due to deadline': 100} appcpu=96.8% gencpu=16.9% pgconn_max=21 redis={'hits': 515477, 'misses': 44237, 'hit_ratio': 0.921}
+[12:34:41] done C4
+
+########## B1 ##########
+[12:34:42] config=B1 driver=async target=pg cache=off workers=1
+[12:34:42] load: c=100 warmup=10s measure=30s reps=3 url=http://127.0.0.1:8000/exam/1[0-9]{5}
+[12:34:42] cores: app=0-7 gen=8-11
+[12:34:42] --- rep 1/3 ---
+[12:34:43] app up pid=293428 -> {"ok":true,"driver":"async","target":"pg","cache":"off"}
+[12:34:43] pre-flight http://127.0.0.1:8000/exam/160375 -> HTTP 200 id=160375
+[12:34:43] warm-up 10s (discarded)
+[12:34:53] measure 30s -> /content/python-at-scale-bench/results/raw/B1_rep1.oha.json
+  req/s=1685.6 p50=58.8ms p99=167.4ms codes={'200': 50471} errs={'aborted due to deadline': 100} appcpu=33.7% gencpu=2.3% pgconn_max=31 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:35:27] --- rep 2/3 ---
+[12:35:28] app up pid=293703 -> {"ok":true,"driver":"async","target":"pg","cache":"off"}
+[12:35:28] pre-flight http://127.0.0.1:8000/exam/113396 -> HTTP 200 id=113396
+[12:35:28] warm-up 10s (discarded)
+[12:35:38] measure 30s -> /content/python-at-scale-bench/results/raw/B1_rep2.oha.json
+  req/s=1716.2 p50=58.2ms p99=158.9ms codes={'200': 51396} errs={'aborted due to deadline': 100} appcpu=32.5% gencpu=2.1% pgconn_max=31 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:36:12] --- rep 3/3 ---
+[12:36:13] app up pid=293985 -> {"ok":true,"driver":"async","target":"pg","cache":"off"}
+[12:36:13] pre-flight http://127.0.0.1:8000/exam/192888 -> HTTP 200 id=192888
+[12:36:13] warm-up 10s (discarded)
+[12:36:23] measure 30s -> /content/python-at-scale-bench/results/raw/B1_rep3.oha.json
+  req/s=1672.6 p50=59.2ms p99=204.2ms codes={'200': 50083} errs={'aborted due to deadline': 100} appcpu=32.7% gencpu=2.3% pgconn_max=31 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:36:56] done B1
+
+########## B2 ##########
+[12:36:57] config=B2 driver=sync target=pgbouncer cache=off workers=1
+[12:36:57] load: c=100 warmup=10s measure=30s reps=3 url=http://127.0.0.1:8000/exam/1[0-9]{5}
+[12:36:57] cores: app=0-7 gen=8-11
+[12:36:57] --- rep 1/3 ---
+[12:36:58] app up pid=294293 -> {"ok":true,"driver":"sync","target":"pgbouncer","cache":"off"}
+[12:36:58] pre-flight http://127.0.0.1:8000/exam/104190 -> HTTP 200 id=104190
+[12:36:58] warm-up 10s (discarded)
+[12:37:08] measure 30s -> /content/python-at-scale-bench/results/raw/B2_rep1.oha.json
+  req/s=69.8 p50=1440.6ms p99=2621.0ms codes={'200': 1994} errs={'aborted due to deadline': 100} appcpu=29.5% gencpu=0.2% pgconn_max=2 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:37:43] --- rep 2/3 ---
+[12:37:43] app up pid=297523 -> {"ok":true,"driver":"sync","target":"pgbouncer","cache":"off"}
+[12:37:43] pre-flight http://127.0.0.1:8000/exam/133768 -> HTTP 200 id=133768
+[12:37:43] warm-up 10s (discarded)
+[12:37:53] measure 30s -> /content/python-at-scale-bench/results/raw/B2_rep2.oha.json
+  req/s=69.6 p50=1450.5ms p99=2757.0ms codes={'200': 1988} errs={'aborted due to deadline': 100} appcpu=30.7% gencpu=0.2% pgconn_max=2 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:38:28] --- rep 3/3 ---
+[12:38:28] app up pid=300698 -> {"ok":true,"driver":"sync","target":"pgbouncer","cache":"off"}
+[12:38:28] pre-flight http://127.0.0.1:8000/exam/117531 -> HTTP 200 id=117531
+[12:38:28] warm-up 10s (discarded)
+[12:38:38] measure 30s -> /content/python-at-scale-bench/results/raw/B2_rep3.oha.json
+  req/s=69.0 p50=1466.7ms p99=2429.5ms codes={'200': 1971} errs={'aborted due to deadline': 100} appcpu=32.7% gencpu=0.2% pgconn_max=2 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:39:13] done B2
+
+########## B3 ##########
+[12:39:14] config=B3 driver=sync target=pg cache=off workers=8
+[12:39:14] load: c=100 warmup=10s measure=30s reps=3 url=http://127.0.0.1:8000/exam/1[0-9]{5}
+[12:39:14] cores: app=0-7 gen=8-11
+[12:39:14] --- rep 1/3 ---
+[12:39:15] app up pid=303926 -> {"ok":true,"driver":"sync","target":"pg","cache":"off"}
+[12:39:15] pre-flight http://127.0.0.1:8000/exam/131769 -> HTTP 200 id=131769
+[12:39:15] warm-up 10s (discarded)
+[12:39:25] measure 30s -> /content/python-at-scale-bench/results/raw/B3_rep1.oha.json
+  req/s=371.2 p50=266.2ms p99=448.9ms codes={'200': 11042} errs={'aborted due to deadline': 100} appcpu=97.4% gencpu=0.7% pgconn_max=28 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:40:00] --- rep 2/3 ---
+[12:40:01] app up pid=319441 -> {"ok":true,"driver":"sync","target":"pg","cache":"off"}
+[12:40:01] pre-flight http://127.0.0.1:8000/exam/103656 -> HTTP 200 id=103656
+[12:40:01] warm-up 10s (discarded)
+[12:40:11] measure 30s -> /content/python-at-scale-bench/results/raw/B3_rep2.oha.json
+  req/s=379.7 p50=260.4ms p99=425.4ms codes={'200': 11297} errs={'aborted due to deadline': 100} appcpu=97.1% gencpu=0.7% pgconn_max=31 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:40:46] --- rep 3/3 ---
+[12:40:47] app up pid=335112 -> {"ok":true,"driver":"sync","target":"pg","cache":"off"}
+[12:40:47] pre-flight http://127.0.0.1:8000/exam/102667 -> HTTP 200 id=102667
+[12:40:47] warm-up 10s (discarded)
+[12:40:57] measure 30s -> /content/python-at-scale-bench/results/raw/B3_rep3.oha.json
+  req/s=382.8 p50=258.7ms p99=430.3ms codes={'200': 11390} errs={'aborted due to deadline': 100} appcpu=98.4% gencpu=0.7% pgconn_max=39 redis={'hits': 0, 'misses': 0, 'hit_ratio': None}
+[12:41:32] done B3
+
+########## B4 ##########
+[12:41:33] config=B4 driver=sync target=pg cache=on workers=1
+[12:41:33] load: c=100 warmup=10s measure=30s reps=3 url=http://127.0.0.1:8000/exam/1[0-9]{5}
+[12:41:33] cores: app=0-7 gen=8-11
+[12:41:33] --- rep 1/3 ---
+[12:41:33] redis flushed (cache starts cold; the 10s warm-up primes it)
+[12:41:33] app up pid=350953 -> {"ok":true,"driver":"sync","target":"pg","cache":"on"}
+[12:41:33] pre-flight http://127.0.0.1:8000/exam/156567 -> HTTP 200 id=156567
+[12:41:33] warm-up 10s (discarded)
+[12:41:43] measure 30s -> /content/python-at-scale-bench/results/raw/B4_rep1.oha.json
+  req/s=239.3 p50=418.7ms p99=575.1ms codes={'200': 7080} errs={'aborted due to deadline': 100} appcpu=73.2% gencpu=0.4% pgconn_max=19 redis={'hits': 426, 'misses': 6752, 'hit_ratio': 0.0593}
+[12:42:17] --- rep 2/3 ---
+[12:42:17] redis flushed (cache starts cold; the 10s warm-up primes it)
+[12:42:18] app up pid=360327 -> {"ok":true,"driver":"sync","target":"pg","cache":"on"}
+[12:42:18] pre-flight http://127.0.0.1:8000/exam/132687 -> HTTP 200 id=132687
+[12:42:18] warm-up 10s (discarded)
+[12:42:28] measure 30s -> /content/python-at-scale-bench/results/raw/B4_rep2.oha.json
+  req/s=237.6 p50=418.8ms p99=595.6ms codes={'200': 7030} errs={'aborted due to deadline': 100} appcpu=72.2% gencpu=0.4% pgconn_max=23 redis={'hits': 422, 'misses': 6714, 'hit_ratio': 0.0591}
+[12:43:02] --- rep 3/3 ---
+[12:43:02] redis flushed (cache starts cold; the 10s warm-up primes it)
+[12:43:02] app up pid=369690 -> {"ok":true,"driver":"sync","target":"pg","cache":"on"}
+[12:43:02] pre-flight http://127.0.0.1:8000/exam/164541 -> HTTP 200 id=164541
+[12:43:02] warm-up 10s (discarded)
+[12:43:12] measure 30s -> /content/python-at-scale-bench/results/raw/B4_rep3.oha.json
+  req/s=243.3 p50=404.6ms p99=585.7ms codes={'200': 7199} errs={'aborted due to deadline': 100} appcpu=71.1% gencpu=0.3% pgconn_max=21 redis={'hits': 453, 'misses': 6854, 'hit_ratio': 0.062}
+[12:43:46] done B4
+
+########## FLASK ##########
+[12:43:47] flask: gunicorn -k gevent -w 17 (2 x 8 + 1), cache=on, target=pgbouncer
+[12:43:47] --- rep 1/3 ---
+[12:43:48] app up pid=379355
+[12:43:48] warm-up 10s (discarded)
+  req/s=7872.2 p50=8.4ms p99=60.1ms codes={'200': 231854, '500': 4271}
+[12:44:33] --- rep 2/3 ---
+[12:44:33] app up pid=379684
+[12:44:33] warm-up 10s (discarded)
+  req/s=7942.1 p50=7.9ms p99=45.9ms codes={'200': 236918, '500': 1291}
+[12:45:18] --- rep 3/3 ---
+[12:45:19] app up pid=380006
+[12:45:19] warm-up 10s (discarded)
+  req/s=7425.5 p50=8.4ms p99=69.3ms codes={'200': 212822, '500': 9868}
+[12:46:04] done FLASK
+=== sweep finished 2026-08-26T12:46:05Z ===
+### All configurations (median of 3 reps)
+
+| config | req/s | spread | p50 ms | p95 ms | p99 ms | p99.9 ms | max ms | failures | app CPU% | gen CPU% | keep-alive conns | peak pg conns | cache hit |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| C0 | 232.8 | 1.5% | 426.7 | 509.1 | 605.8 | 2,077.4 | 2,263.0 | 0 (0.00%) | 72.4 | 0.3 | 99 | 42 | n/a |
+| C1 | 1,737.4 | 1.2% | 57.6 | 108.3 | 157.2 | 233.2 | 413.9 | 0 (0.00%) | 29.4 | 2.1 | 99 | 31 | n/a |
+| C2 | 1,811.7 | 3.3% | 54.4 | 61.9 | 65.5 | 110.2 | 152.5 | 0 (0.00%) | 33.6 | 2.1 | 98 | 21 | n/a |
+| C3 | 5,981.9 | 7.1% | 16.2 | 25.5 | 31.8 | 41.8 | 63.7 | 0 (0.00%) | 88.1 | 7.7 | 98 | 21 | n/a |
+| C4 | 18,764.0 | 5.7% | 4.3 | 16.1 | 22.9 | 29.3 | 50.8 | 0 (0.00%) | 96.3 | 16.3 | 98 | 21 | 91.9% |
+| B1 | 1,685.6 | 2.6% | 58.8 | 115.5 | 167.4 | 257.8 | 362.1 | 0 (0.00%) | 32.7 | 2.3 | 99 | 31 | n/a |
+| B2 | 69.6 | 1.1% | 1,450.5 | 1,566.2 | 2,621.0 | 2,873.7 | 2,888.1 | 0 (0.00%) | 30.7 | 0.2 | 98 | 2 | n/a |
+| B3 | 379.7 | 3.1% | 260.4 | 376.4 | 430.3 | 503.7 | 566.1 | 0 (0.00%) | 97.4 | 0.7 | 97 | 31 | n/a |
+| B4 | 239.3 | 2.4% | 418.7 | 503.5 | 585.7 | 2,152.7 | 2,269.0 | 0 (0.00%) | 72.2 | 0.4 | 98 | 21 | 5.9% |
+| FLASK | 7,872.2 | 6.6% | 8.4 | 37.5 | 60.1 | 101.0 | 184.6 | 15430 (1.81%) | 96.0 | 11.1 | 98 | 21 | 63.7% |
+
+### Set B — one change at a time, vs C0
+
+| change | config | req/s | multiplier vs C0 | p99 ms | non-2xx+err |
+|---|---|---|---|---|---|
+| B1 = C0 + async driver only | B1 | 1,685.6 | 7.24x | 167.4 | 0 |
+| B2 = C0 + PgBouncer only | B2 | 69.6 | 0.30x | 2,621.0 | 0 |
+| B3 = C0 + 8 workers only | B3 | 379.7 | 1.63x | 430.3 | 0 |
+| B4 = C0 + Redis cache-aside only | B4 | 239.3 | 1.03x | 585.7 | 0 |
+
+### Status-code / error breakdown (summed over reps)
+
+`deadline aborts` = requests still in flight when the 30s window closed. One per connection per rep; a stopwatch artefact, not a server failure. Excluded from the failure column above.
+
+| config | codes | real errors | deadline aborts |
+|---|---|---|---|
+| C0 | `{"200": 20576}` | `{}` | 300 |
+| C1 | `{"200": 155604}` | `{}` | 300 |
+| C2 | `{"200": 163289}` | `{}` | 300 |
+| C3 | `{"200": 538321}` | `{}` | 300 |
+| C4 | `{"200": 1686875}` | `{}` | 299 |
+| B1 | `{"200": 151950}` | `{}` | 300 |
+| B2 | `{"200": 5953}` | `{}` | 300 |
+| B3 | `{"200": 33729}` | `{}` | 300 |
+| B4 | `{"200": 21309}` | `{}` | 300 |
+| FLASK | `{"200": 681594, "500": 15430}` | `{}` | 299 |

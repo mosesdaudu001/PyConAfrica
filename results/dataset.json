@@ -1,0 +1,8 @@
+{
+  "rows": 200000,
+  "size": "228 MB",
+  "bytes": 239091712,
+  "max_connections": "100",
+  "shared_buffers": "128MB",
+  "version": "PostgreSQL 17.11 (Ubuntu 17.11-1.pgdg22.04+2) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0, 64-bit"
+}

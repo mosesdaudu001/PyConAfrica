@@ -1,0 +1,7 @@
+[
+{"workers":1,"rep":1,"requests_per_sec":4781.687016598369,"concurrency":100,"measure_s":30},
+{"workers":1,"rep":2,"requests_per_sec":4754.515007171944,"concurrency":100,"measure_s":30},
+{"workers":1,"rep":3,"requests_per_sec":4823.972494572759,"concurrency":100,"measure_s":30},
+{"workers":8,"rep":1,"requests_per_sec":20252.264575570283,"concurrency":100,"measure_s":30},
+{"workers":8,"rep":2,"requests_per_sec":19906.970974544765,"concurrency":100,"measure_s":30},
+{"workers":8,"rep":3,"requests_per_sec":20001.066255137568,"concurrency":100,"measure_s":30}]

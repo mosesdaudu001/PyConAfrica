@@ -1,0 +1,37 @@
+# --- Python ---------------------------------------------------------------
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# --- Local configuration ----------------------------------------------------
+# docker-compose reads a real .env; only the template is committed.
+.env
+.env.*
+!.env.example
+
+# --- Personal talk material (not part of the benchmark) ---------------------
+*.pptx
+~$*
+TALKING_NOTES.md
+
+# --- Editors, OS and tools --------------------------------------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+.claude/settings.local.json
+
+# results/ is deliberately NOT ignored. The raw oha and monitor JSON, the
+# per-config command logs and the aggregated tables ARE the evidence for
+# RESULTS.md, and a benchmark whose numbers cannot be checked is worth nothing.
+# Only the multi-hundred-megabyte application logs are trimmed, and each one
+# keeps a header saying what was removed and how to regenerate it.

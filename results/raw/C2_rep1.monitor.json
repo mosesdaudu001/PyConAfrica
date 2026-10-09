@@ -1,0 +1,46 @@
+{
+  "wall_s": 30.06,
+  "samples": 113,
+  "app_cores": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "gen_cores": [
+    8,
+    9,
+    10,
+    11
+  ],
+  "app_cpu_busy_pct": {
+    "avg": 35.7,
+    "max": 45.5,
+    "p95": 43.9
+  },
+  "gen_cpu_busy_pct": {
+    "avg": 15.2,
+    "max": 36.5,
+    "p95": 28.6
+  },
+  "loadgen_proc_cpu_pct_of_one_core": 8.5,
+  "loadgen_proc_cpu_pct_of_its_cores": 2.1,
+  "pg_connections": {
+    "max": 21,
+    "avg": 21.0,
+    "samples": 113
+  },
+  "http_established": {
+    "max": 100,
+    "avg": 98.2
+  },
+  "redis": {
+    "hits": 0,
+    "misses": 0,
+    "hit_ratio": null
+  }
+}

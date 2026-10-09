@@ -1,0 +1,73 @@
+TRIMMED for the repository. Original: 93,589,318 bytes / 1,291,256 lines.
+This file spans BOTH Flask runs because the harness appended to it;
+that is fixed (bench/run_flask.sh now truncates it per run). The full
+exception tally and the representative traceback are preserved in
+results/raw_flask_poolerror/FLASK.app.log.excerpt.
+
+Tally over the original: 67,934 psycopg2.pool.PoolError, 85 RuntimeError
+(the RuntimeErrors are gevent worker-shutdown noise). The corrected run
+added ZERO PoolErrors -- the count is identical to the archived failed
+run, which is the evidence that the BoundedSemaphore fix worked.
+
+--- first 60 lines, verbatim ---
+
+[2026-08-26 12:43:48,725] ERROR in app: Exception on /exam/132141 [GET]
+Traceback (most recent call last):
+  File "/content/python-at-scale-bench/.venv/lib/python3.13/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/content/python-at-scale-bench/.venv/lib/python3.13/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/content/python-at-scale-bench/.venv/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/content/python-at-scale-bench/.venv/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/content/python-at-scale-bench/app/flask_app.py", line 78, in get_exam
+    conn = p.getconn()
+  File "/content/python-at-scale-bench/.venv/lib/python3.13/site-packages/psycopg2/pool.py", line 169, in getconn
+    return self._getconn(key)
+           ~~~~~~~~~~~~~^^^^^
+  File "/content/python-at-scale-bench/.venv/lib/python3.13/site-packages/psycopg2/pool.py", line 92, in _getconn
+    raise PoolError("connection pool exhausted")
+psycopg2.pool.PoolError: connection pool exhausted
+[2026-08-26 12:43:48,731] ERROR in app: Exception on /exam/123654 [GET]
+Traceback (most recent call last):
+  File "/content/python-at-scale-bench/.venv/lib/python3.13/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/content/python-at-scale-bench/.venv/lib/python3.13/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/content/python-at-scale-bench/.venv/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/content/python-at-scale-bench/.venv/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/content/python-at-scale-bench/app/flask_app.py", line 78, in get_exam
+    conn = p.getconn()
+  File "/content/python-at-scale-bench/.venv/lib/python3.13/site-packages/psycopg2/pool.py", line 169, in getconn
+    return self._getconn(key)
+           ~~~~~~~~~~~~~^^^^^
+  File "/content/python-at-scale-bench/.venv/lib/python3.13/site-packages/psycopg2/pool.py", line 92, in _getconn
+    raise PoolError("connection pool exhausted")
+psycopg2.pool.PoolError: connection pool exhausted
+[2026-08-26 12:43:48,733] ERROR in app: Exception on /exam/165161 [GET]
+Traceback (most recent call last):
+  File "/content/python-at-scale-bench/.venv/lib/python3.13/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/content/python-at-scale-bench/.venv/lib/python3.13/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/content/python-at-scale-bench/.venv/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/content/python-at-scale-bench/.venv/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/content/python-at-scale-bench/app/flask_app.py", line 78, in get_exam
+    conn = p.getconn()
+  File "/content/python-at-scale-bench/.venv/lib/python3.13/site-packages/psycopg2/pool.py", line 169, in getconn
+    return self._getconn(key)
+           ~~~~~~~~~~~~~^^^^^
+  File "/content/python-at-scale-bench/.venv/lib/python3.13/site-packages/psycopg2/pool.py", line 92, in _getconn
+    raise PoolError("connection pool exhausted")
+psycopg2.pool.PoolError: connection pool exhausted
+[2026-08-26 12:43:48,735] ERROR in app: Exception on /exam/108522 [GET]
+Traceback (most recent call last):
+  File "/content/python-at-scale-bench/.venv/lib/python3.13/site-packages/flask/app.py", line 1511, in wsgi_app

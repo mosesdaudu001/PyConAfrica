@@ -1,0 +1,110 @@
+--- a/app.py
++++ b/app.py
+@@ -1537,6 +1537,39 @@
+ app = FastAPI(title="Question Generation Service")
+ 
+ 
++# --- slide-4 instrumentation -------------------------------------------------
++# Splits every request into model / queue / python milliseconds and emits one
++# JSON line per request. Read-only: it adds no I/O to the hot path beyond a log
++# write, and changes no existing behaviour.
++from request_timing import begin_request, snapshot  # noqa: E402
++
++_timing_log = logging.getLogger("qgs.timing")
++
++
++@app.middleware("http")
++async def _request_timing_middleware(request, call_next):
++    begin_request()
++    started = time.perf_counter()
++    response = await call_next(request)
++    total_ms = (time.perf_counter() - started) * 1000.0
++    model_ms, queue_ms, model_calls = snapshot()
++    python_ms = total_ms - model_ms - queue_ms
++    _timing_log.info(json.dumps({
++        "path": request.url.path,
++        "status": response.status_code,
++        "total_ms": round(total_ms, 2),
++        "model_ms": round(model_ms, 2),
++        "queue_ms": round(queue_ms, 2),
++        "python_ms": round(python_ms, 2),
++        "model_calls": model_calls,
++        "model_share": round(model_ms / total_ms, 4) if total_ms > 0 else None,
++    }))
++    response.headers["X-Total-Ms"] = f"{total_ms:.1f}"
++    response.headers["X-Model-Ms"] = f"{model_ms:.1f}"
++    response.headers["X-Python-Ms"] = f"{python_ms:.1f}"
++    return response
++
++
+ @app.on_event("shutdown")
+ async def _shutdown_llm_resources():
+     """Close the shared LLM ThreadPoolExecutor and aiohttp session on exit."""
+--- a/utils.py
++++ b/utils.py
+@@ -19,6 +19,7 @@
+ from google.cloud import texttospeech
+ from blueprints.act_blueprint import is_act_exam, get_act_prompt_enhancement, get_act_difficulty
+ from llm_provider import ModelConfig, get_provider, ProviderName, OutputTruncatedError
++from request_timing import note_queue_wait, track_model_call
+ from latex_sanitizer import sanitize_latex_tree, flatten_answer_choices
+ from graph_builder import (
+     build_interactive_graph_data, build_graph_solution, graph_answer_label, GraphBuildError,
+@@ -813,17 +814,20 @@
+         attempt = 0
+         while True:
+             try:
++                _queued_at = time.perf_counter()
+                 async with sem:
+-                    result = await asyncio.get_event_loop().run_in_executor(
+-                        self.executor,
+-                        self._provider.generate_content_sync,
+-                        prompt,
+-                        model,
+-                        schema,
+-                        temperature,
+-                        max_output_tokens,
+-                        kwargs,
+-                    )
++                    note_queue_wait(_queued_at)
++                    with track_model_call():
++                        result = await asyncio.get_event_loop().run_in_executor(
++                            self.executor,
++                            self._provider.generate_content_sync,
++                            prompt,
++                            model,
++                            schema,
++                            temperature,
++                            max_output_tokens,
++                            kwargs,
++                        )
+                 return _coerce_to_schema_shape(result, schema)
+             except OutputTruncatedError as e:
+                 # Truncation is deterministic at temperature 0 — retrying the
+@@ -879,15 +883,18 @@
+         attempt = 0
+         while True:
+             try:
++                _queued_at = time.perf_counter()
+                 async with sem:
+-                    response = await loop.run_in_executor(
+-                        self.executor,
+-                        self._generate_content_raw_sync,
+-                        prompt,
+-                        model,
+-                        temperature,
+-                        kwargs,          # passed as extra_kwargs
+-                    )
++                    note_queue_wait(_queued_at)
++                    with track_model_call():
++                        response = await loop.run_in_executor(
++                            self.executor,
++                            self._generate_content_raw_sync,
++                            prompt,
++                            model,
++                            temperature,
++                            kwargs,          # passed as extra_kwargs
++                        )
+                 return response
+             except Exception as e:
+                 is_429 = _is_rate_limit_error(e)

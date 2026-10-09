@@ -1,0 +1,23 @@
+{
+  "duration_s": 20.0,
+  "idle_app_cores_busy_pct": {
+    "avg": 9.1,
+    "max": 27.1,
+    "p95": 17.9
+  },
+  "idle_gen_cores_busy_pct": {
+    "avg": 29.2,
+    "max": 45.5,
+    "p95": 41.2
+  },
+  "top_processes": [
+    "%CPU   RSS COMMAND",
+    "91.5 3547624 python3",
+    "16.2 11848 pgbouncer",
+    "4.4 31512 postgres",
+    "4.3 235156 redis-server",
+    "2.7 139876 postgres",
+    "2.7 139944 postgres",
+    "2.7 139752 postgres"
+  ]
+}
